@@ -1,10 +1,11 @@
-﻿define v = Character("Vermina")
-define n = Character("NG")
-define d = Character("Dimitri")
-define f = Character("Fermin")
-define g = Character("Gambrio")
+﻿define v = Character("Vermina", color='#9f8dbd')
+define n = Character("NG",color='#b6994a')
+define d = Character("Dimitri", color='#ff0000')
+define f = Character("Fermin", color='#b4792c')
+define g = Character("Gambrio", color='#ffd900')
 define c = Character("???")
 define narrator = Character(None, what_italic=True)
+
 
 
 # El juego comienza aquí.
@@ -13,31 +14,32 @@ label start:
     # defecto. Es posible añadir un archivo en el directorio 'images' con el
     # nombre "bg room.png" or "bg room.jpg" para que se muestre aquí.
 
+    #TODO: Narrador texto lento
     "Un día soleado de verano un grupo de tres aventureros se adentran en la ciudad de Versaya."
 
-    # scene ciudad
-    # with Dissolve(1.0)
+    scene ciudad_day
+    with Dissolve(1.0)
 
     "En esta hermosa ciudad es temporada de cosecha por lo que nuestros aventureros aprovechan para reponer sus provisiones."
     # play music "Musica-sencilla.mp3"
-    # show Vermina sad
+    show vermina sad
     v "Necesito reponer mis pociones, en la última batalla, con lo poco que protege mi túnica me quede sin pociones demasiado rápido. Necesito comprar más."
-    # hide Vermina sad
-    # with moveoutleft
+    hide vermina sad
+    with moveoutleft
 
-    # show NG happy
+    show ng happy
     n "Mi presencia es necesaria en la gran casa de Dios, luego más tarde acudiré a vuestra llamada para seguir con nuestra gira."
-    # hide NG happy
-    # with move out right
+    hide ng happy
+    with moveoutright
 
-    # show Dimitri happy
+    show dimitri happy at Transform(xzoom=-1)
     d "Pues yo me voy con las pibitas, a ver si mi nueva canción les mola."
-    # hide Dimitri happy
-    # with moveoutbottom
+    hide dimitri happy
+    with moveoutbottom
     #stop music fadeout 1
     "El grupo se separa y completa sus actividades sin ningún inconveniente, volviéndose a encontrar en el bar Toronja. Preparan el escenario y empiezan con su actuación."
-    # scene bar
-    # with Dissolve(1.5)
+    scene tavern_day
+    with Dissolve(1.5)
 
     transform left:
         xalign 0.0
@@ -50,49 +52,55 @@ label start:
         yalign 1.0
     
 
-    #show NG happy at left
-    #with Dissolve(.5)
-    #show Dimitri happy at right
-    #with Dissolve(1.0)
-    #show Vermina happy at center
-    #with Dissolve(1.5)
+    show ng happy at left
+    with Dissolve(.5)
+    show dimitri happy at right
+    with Dissolve(1.0)
+    show vermina happy at center
+    with Dissolve(1.5)
 
     v "Hola a todos señores y señoras, vamos a empezar con nuestra actuación. Somos los Magos Tarados y esta es nuestra nueva canción"
     # El nombre del grupo se puede cambiar
     # play music "Musica-pop.mp3"
 
-    #hide NG
-    #hide Dimitri
-    #hide Vermina
+    hide ng
+    hide dimitri
+    hide vermina
 
     "Después del espectáculo un bárbaro se acercó a nuestro grupo de magos y empezó a molestar a Vermina."
-    #show Vermina scared at right
-    #with Dissolve(.5)
+    show vermina at right
+    with Dissolve(.5)
+
+    show fermin at Transform(zoom=0.9, yalign=1.0)
+    with Dissolve(1)
 
     f "Hola pequeña cantas bastante mal pero seguro que ese cuerpo no se mueve tan mal en mi casa."
-
-    #show Fermin perv at left
-    #with Dissolve(1)
 
     transform slightright:
         xalign 0.75
         yalign 1.0
-    
-    #show Dimitri angry at slightright infront Vermina
-    #with Dissolve(.4)
+        
+    transform salir_rapido:
+        linear 1.0 xpos 1.5  # El personaje se moverá hacia fuera de la pantalla en 0.3 segundos
 
-    d "Oye dejala en paz ella es nuestra cantante y aunque ninguno de nosotros sea un profesional no tienes porque obligarla a renunciar a su sueño."
+    hide vermina
+    with moveoutright
+    show dimitri angry at right #TODO: Esto o va - infront vermina
+    with moveinright
 
-    #hide Dimitri
+    d "Oye, déjala en paz ella es nuestra cantante y aunque ninguno de nosotros sea un profesional no tienes porque obligarla a renunciar a su sueño."
 
-    #show NG at slightright infront Vermina
-    #with Dissolve(.4)
+    hide dimitri
+    with moveoutright
+
+    show ng at right #TODO infront vermina
+    with moveinright
 
     n "Deberías medir mejor tus palabras bestia, ningún hombre está por encima de las mujeres ya que ellas aportan la vida a este mundo de muerte y pena."
 
-    f "Apartaos escoria esto es entre ella y yo."
+    f "Apartaos escoria, esto es entre ella y yo."
     
-    #hide all
+    hide all
     "Fermin el bárbaro se acercó peligrosamente a Vermina."
 
     menu:
@@ -112,21 +120,22 @@ label start:
     label choice3:
         "Fermin empuja con fuerza a Dimitri por lo que Vermina es empujada contra la pared y aplastada por este perdiendo así el conocimiento."
 
-    #scene callejon
-    #show NG at right
-    #with Dissolve(.5)
-    #show Dimitri at left
-    #with Dissolve(.5)
+    scene alley_afternoon
+    with Dissolve(.5)
+    show ng at Transform(xzoom=-1, yalign=1.0)
+    with Dissolve(.5)
+    show dimitri at right
+    with Dissolve(.5)
 
     "Pasan los días mientras intentan recuperar algo de dinero cantando suavemente en las calles de la ciudad y pidiendo algo de dinero para poder comer y así sobrevivir un día más."
     
-    #show NG angry at right
-    #with Dissolve(.4)
+    show ng angry at left
+    with Dissolve(.4)
 
     n "Dios nos ha castigado por tu culpa Dimitri todos tus actos impuros nos han dejado aquí varados sin dinero para comer. Oh mi querido Dios, por qué le haces esto a tu más devoto seguidor."
 
-    #show Dimitri angry at left
-    #with Dissolve(.4)
+    show dimitri angry at right
+    with Dissolve(.4)
 
     d "Pero que dices Dios no existe. Si existiera no nos dejaría pasar por esto. Es más, nos traería a alguien para que nos ayudase."
 
@@ -134,30 +143,39 @@ label start:
 
     "Dimitri y NG se miran con rabia, como si estuvieran a punto de pelearse. Pero de pronto escuchan toser a Vermina, y corren despavoridos a ayudarla ya que ella fue la que más golpes se llevó."
 
-    #show Vermina sad
-    #with Dissolve(1)
+    show vermina sad
+    with Dissolve(1)
+
+    v "Chicos no os peleis no fue culpa de ninguno de nosotros, simplemente tuvimos mala suerte ahora dejadme descansar."
+    
+    hide vermina
+    hide ng
+    hide dimitri
+    with Dissolve(.4)
 
     "De un momento a otro un hombre bien vestido se acerca a ellos."
 
+    show siluet
+    with moveinright
+
     c "Si sois Los Magos Tarados. La canción que cantasteis en el bar Toronja me emocionó muchísimo pero el conflicto que hubo justo después me asustó, por lo que huí de allí. Pero al escuchar lo que había sucedido decidí actuar y ayudaros en algo."
-    c "Me escucharíais?"
-    #show siluet
-    #with moveinright
+    c "¿Me escucharíais?"
+    
     menu: 
         "Ignorar al extraño y con el dinero recaudado curar a Vermina y volver a cantar en algunos bares.":
             jump choice11
         "Escuchar al extraño por un minuto ya que puede que diga algo interesante.":
             jump choice22
     label choice11:
-        #show Dimitri at left
-        #with Dissolve(.5)
+        show dimitri at left
+        with Dissolve(.5)
         d "No tenemos tiempo para tus tonterías lo siento tenemos que llevar a nuestra compañera al hospital."
-        #hide Dimitri
-        #show NG at left
-        #with Dissolve(.5)
+        hide dimitri
+        show ng at left
+        with Dissolve(.5)
         n "Lo siento buen hombre vamos con prisa."
-        #hide NG
-        #with Dissolve(1.5)
+        hide ng
+        with Dissolve(1.5)
         "Finalmente consiguen curar a Vermina pero por culpa del alto costo de la cura nuestro grupo no pudo seguir con su sueño."
         "Vermina tuvo que encontrar trabajo en un bar como camarera donde habitualmente la acosaban pero era protegida por el jefe del local."
         "Dimitri se vuelve un alcohólico ya que un bardo sin un sueño no es nadie."
@@ -165,47 +183,48 @@ label start:
         #Finaliza el juego
         return
     label choice22:
+        hide siluet
+        show gambrio happy
+        with Dissolve(0.5)
         g "Me llamo Gambrio y tengo bastante dinero por lo que estoy dispuesto a promocionar un concierto de vuestro grupo en el centro de la Ciudad Versaya, en la plaza mayor."
-
-        #hide siluet
-        #show Gambrio happy
 
         "Vermina está atónita y no se lo puede creer, mientras que NG y Dmitri se levantan porque creen que es mentira."
 
-        #show Vermina shock at left
+        show dimitri at right
 
-        d "¿Señor Gambrio verdad? Me parece que crees que somos una broma. No somos famosos y encima ahora mismo no tenemos ni para comer y tu quieres que hagamos un concierto sin previo aviso? Ja, primero empieza por darnos alojamiento y tratamiento para Vermina."
+        d "¿Señor Gambrio verdad? Me parece que crees que somos una broma."
+        d "No somos famosos y encima ahora mismo no tenemos ni para comer y tu quieres que hagamos un concierto sin previo aviso? Ja, primero empieza por darnos alojamiento y tratamiento para Vermina."
+        
+        hide vermina
+        show dimitri angry at right
 
-        #hide Vermina
-        #show Dimitri angry at right
+        g "Trato hecho, esta noche podéis venir a mi casa y por parte de la señorita Vermina podemos llevarla ahora al hospital."
 
-        g "Trato hecho, esta noche podeís venir a mi casa y por parte de la señorita Vermina podemos llevarla ahora al hospital."
-
-        #show Gambrio happy at left
-        #with Dissolve(.5)
+        show gambrio happy at left
+        with Dissolve(.5)
 
         "Las caras de todos se iluminaron y vieron esperanza en toda esta desesperación."
 
-        #hide Gambrio
-        #hide Dimitri
-        #show Vermina shock at left
-        #with Dissolve(.5)
-        #show NG shock
-        #with Dissolve(.5)
-        #show Dimitri shock at right
-        #with Dissolve(.5)
+        hide gambrio
+        hide dimitri
+        show vermina shock at left
+        with Dissolve(.5)
+        show ng shock
+        with Dissolve(.5)
+        show dimitri shock at right
+        with Dissolve(.5)
 
         "Unos días después todos estaban recuperados y listos para cantar. Su equipamiento había sido reparado y Gambrio les había proporcionado todo lo necesario para llevar a cabo su concierto por lo que todos estaban muy emocionados."
 
-        #show Vermina happy
+        show vermina happy
 
         v "Aun no me creo que vayamos a cantar en un escenario de verdad. Nuestro sueño por fin se va a hacer realidad chicos."
 
-        #show NG happy at left
+        show ng happy at left
         
         n "Tienes razón señorita Vermina, Dios puso nuestra convicción a prueba y gracias a que fuimos persistentes hemos sido recompensados con nuestro sueño, no podía haber mejor recompensa."
 
-        #show Dimitri happy at right
+        show dimitri happy at right
 
         d "Espero que después de esto las mujeres se me vengan encima."
 
@@ -213,6 +232,34 @@ label start:
 
         "La multitud se acumula y nuestros héroes se emocionan, todo su esfuerzo ha dado sus frutos y han conseguido su sueño, tocar su canción favorita para miles de personas."
 
+        window hide
+        $ quick_menu = False
+        # avoid rolling back and losing chess game state
+        $ renpy.block_rollback()
+        $ song = Song('Rickroll', 'audio/rickroll.mp3', 'audio/rickroll.beatmap.txt', beatmap_stride=3)
+        $ rhythm_game_displayable = RhythmGameDisplayable(song)
+        call screen rhythm_game(rhythm_game_displayable)
+
+        # avoid rolling back and entering the chess game again
+        $ renpy.block_rollback()
+
+        # restore rollback from this point on
+        $ renpy.checkpoint()
+
+        $ quick_menu = True
+        window show
+
+        # '''
+        # if(puntuacion = alta)
+        #     #Buscar forma de cuantificar la puntuación del minijuego
+        #     jump choice111
+        # if(puntuación = normal)
+        #     jump choice222
+        # if(puntuación = pobre)
+        #     jump choice11
+
+        # label
+        # '''
         # Finaliza el juego:
 
         return
