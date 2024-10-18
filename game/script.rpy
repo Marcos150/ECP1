@@ -328,24 +328,21 @@ label start:
         $ quick_menu = True
         window show
 
-        # if(puntuacion = alta)
-        #     #Buscar forma de cuantificar la puntuación del minijuego
-        #     jump puntuacion_alta
-        # if(puntuación = normal)
-        #     jump puntuacion_normal
-        # if(puntuación = pobre)
-        #     jump puntuacion_baja
-
-        # label
-        # Finaliza el juego:
-
-        return
+        if (rhythm_game_displayable.score >= (song.max_score/3)*2):
+            jump puntuacion_alta
+        elif (rhythm_game_displayable.score < (song.max_score/3)*2 and rhythm_game_displayable.score >= song.max_score/3):
+            jump puntuacion_normal
+        else:
+            jump puntuacion_baja
 
 label puntuacion_alta:
     "Completar historia puntuación alta"
+    return
 
 label puntuacion_normal:
     "Completar historia puntuación normal"
+    return
 
 label puntuacion_baja:
     "Completar historia puntuación baja"
+    return
