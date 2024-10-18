@@ -134,5 +134,31 @@
     },
     "cSpell.enableFiletypes": [
         "renpy"
+    ],
+    "cSpell.words": [
+        "dimitri",
+        "Dimitri",
+        "fermin",
+        "Fermin",
+        "gambrio",
+        "Gambrio",
+        "isinstance",
+        "moveinright",
+        "moveoutbottom",
+        "moveoutleft",
+        "moveoutright",
+        "renpy",
+        "siluet",
+        "slightright",
+        "vermina",
+        "Vermina",
+        "Versaya",
+        "xalign",
+        "xanchor",
+        "xpos",
+        "xzoom",
+        "yalign",
+        "yanchor",
+        "ypos"
     ]
 }

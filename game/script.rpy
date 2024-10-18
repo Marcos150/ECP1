@@ -76,7 +76,8 @@ label start:
     with Dissolve(1.0)
 
     "En esta hermosa ciudad es temporada de cosecha por lo que nuestros aventureros aprovechan para reponer sus provisiones."
-    # play music "Musica-sencilla.mp3"
+    #TODO: Esta escena se podria alargar un poquitin, me ha costado sacar esta cancion y quiero que se aproveche mas xd
+    play music "alegre2.mp3"
     show vermina sad
     v "Necesito reponer mis pociones, en la última batalla, con lo poco que protege mi túnica me quede sin pociones demasiado rápido. Necesito comprar más."
     hide vermina sad
@@ -94,9 +95,10 @@ label start:
     with moveoutbottom
     #stop music fadeout 1
     "El grupo se separa y completa sus actividades sin ningún inconveniente, volviéndose a encontrar en el bar Toronja. Preparan el escenario y empiezan con su actuación."
+    stop music fadeout 1.5
     scene tavern_day
-    play music "bar.mp3"
     with Dissolve(1.5)
+    play music "bar.mp3" fadein 0.5
 
     transform left:
         xalign 0.0
@@ -116,7 +118,8 @@ label start:
     show vermina happy at center
     with Dissolve(1.5)
 
-    #TODO: La cancion aqui no dura nada. Se podria directamente saltar a despues de la actuacion
+    #TODO: Se podria directamente saltar a despues de la actuacion, asi nos ahorramos buscar musica para esta parte
+    #Es decir, que v diga algo como "muchas gracias a todos, espero que os haya gustado el concierto"
     v "Hola a todos señores y señoras, vamos a empezar con nuestra actuación. Somos los Magos Tarados y esta es nuestra nueva canción"
     # El nombre del grupo se puede cambiar
     # play music "Musica-pop.mp3"
@@ -179,14 +182,13 @@ label start:
             queue music "pelea.mp3"
             "Fermin empuja con fuerza a Dimitri por lo que Vermina es empujada contra la pared y aplastada por este, perdiendo así el conocimiento."
     
-    #play sound "punch.mp3"
-    #with Pause(0.15)
     scene black
     with Dissolve(1.0)
     stop music fadeout 1.0
 
     with Pause(3)
 
+    play music "triste1.mp3"
     scene alley_afternoon
     with Dissolve(.5)
     show ng at Transform(xzoom=-1, yalign=1.0)
@@ -241,43 +243,42 @@ label start:
         hide dimitri
         show ng at left
         with Dissolve(.5)
-        n "Lo siento buen hombre vamos con prisa."
+        n "Lo siento buen hombre, vamos con prisa."
         hide ng
         with Dissolve(1.5)
         "Finalmente consiguen curar a Vermina pero por culpa del alto coste de la cura nuestro grupo no pudo seguir con su sueño."
         "Vermina tuvo que encontrar trabajo en un bar como camarera, donde habitualmente la acosaban, pero era protegida por el jefe del local."
         "Dimitri se vuelve un alcohólico ya que un bardo sin un sueño no es nadie."
-        #TODO: O Enji sobra?
+        #TODO: 'O Enji' hace falta ponerlo?
         "Por último NG o Enji, nuestro clérigo, volvió a su iglesia y a su vida mundana como cura de barrio."
         #Finaliza el juego
         return
     label choice22:
+        stop music fadeout 0.5
         hide siluet
         show gambrio happy
         with Dissolve(0.5)
+        play music "alegre1.mp3"
+        #TODO: La presentacion de Gambrio se podria alargar un poco mas. 
+        #Podria contar alguna historia personal tipo "de pequeño queria ser musico, pero a mis padres no les gustaba. Por eso ahora quiero ayudar a todos los musicos que veo"
         g "Me llamo Gambrio y tengo bastante dinero por lo que estoy dispuesto a financiar un concierto de vuestro grupo en el centro de la Ciudad Versaya, en la Plaza Mayor."
 
         "Vermina está atónita y no se lo puede creer, mientras que NG y Dmitri se levantan porque creen que es mentira."
 
+        show gambrio happy at left
         show dimitri at right
-
+        with moveinright
+        
         d "¿Señor Gambrio verdad? Me parece que crees que somos una broma."
         d "No somos famosos, no tenemos ni para comer, ¿y tú quieres que hagamos un concierto sin previo aviso? Ja, primero empieza por darnos alojamiento y tratamiento para Vermina."
-        
-        hide vermina
-        show dimitri angry at right
 
         g "Trato hecho."
         g "Esta noche podéis venir a mi casa. Y por parte de la señorita Vermina, podemos llevarla ahora al hospital."
 
-        show gambrio happy at left
-        with Dissolve(.5)
-
         "Las caras de todos se iluminaron y vieron esperanza en toda esta desesperación."
 
-        hide gambrio
-        hide dimitri
-
+        stop music fadeout 1.5
+        queue music "calle.mp3"
         scene square_fountain_day
         with Dissolve(.5)
         show vermina shock at left
@@ -293,7 +294,7 @@ label start:
 
         v "Aun no me creo que vayamos a cantar en un escenario de verdad. Nuestro sueño por fin se va a hacer realidad chicos."
 
-        show ng happy at left
+        #show ng happy at left
         
         n "Tienes razón señorita Vermina, Dios puso nuestra convicción a prueba y gracias a que fuimos persistentes hemos sido recompensados con nuestro sueño, no podía haber mejor recompensa."
 
@@ -305,7 +306,12 @@ label start:
 
         "La multitud se acumula y nuestros héroes se emocionan, todo su esfuerzo ha dado sus frutos y han conseguido su sueño: tocar su canción favorita para miles de personas."
 
-        window hide
+        stop music fadeout 1.5
+        scene black
+        with Dissolve(1.0)
+
+        window hide 
+        with dissolve
         $ quick_menu = False
         # avoid rolling back and losing chess game state
         $ renpy.block_rollback()
@@ -322,17 +328,24 @@ label start:
         $ quick_menu = True
         window show
 
-        # '''
         # if(puntuacion = alta)
         #     #Buscar forma de cuantificar la puntuación del minijuego
-        #     jump choice111
+        #     jump puntuacion_alta
         # if(puntuación = normal)
-        #     jump choice222
+        #     jump puntuacion_normal
         # if(puntuación = pobre)
-        #     jump choice11
+        #     jump puntuacion_baja
 
         # label
-        # '''
         # Finaliza el juego:
 
         return
+
+label puntuacion_alta:
+    "Completar historia puntuación alta"
+
+label puntuacion_normal:
+    "Completar historia puntuación normal"
+
+label puntuacion_baja:
+    "Completar historia puntuación baja"

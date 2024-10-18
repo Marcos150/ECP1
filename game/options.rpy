@@ -33,18 +33,52 @@ define config.version = "1.0"
 define gui.about = _p("""
 Hecho por:
 
-Marcos
+Marcos Ruiz Rubio
 
-Antonio Jose
+José Antonio Sánchez Pérez
 
-Kin
+Qinrui Chen
 
----------------------
+--------------------------
 
-{b}LICENCIAS{/b}
+{b}IMÁGENES UTILIZADAS{/b}
+
+Isekai Visual Novel Backgrounds Free. Autora: Tainara-P. {a=https://tainara-p.itch.io/isekai-visual-novel-backgrounds-free}tainara-p.itch.io/isekai-visual-novel-backgrounds-free{/a}
+
+Sprites generados con Copilot.
+
+NG: {i}Generame una imagen de un Clerigo de estilo mago joven de estilo mediebal para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime.{/i}
+
+Vermina: {i}Generame una imagen de un maga (femenino) joven de estilo mediebal para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime.{/i}
+
+Dimitri: {i}Generame un bardo (mago que utiliza un instrumento como arma) joven de estilo mediebal para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime.{/i}
+
+Gambrio: {i}Generame un aristocrata adulto (no tan niño ni tan viejo) que aparente ser rico  de estilo mediebal para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime.{/i}
+
+Fermin: {i}Generame un barbaro adulto (no tan niño ni tan viejo) con barba, estilo mediebal para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime. Quiero que se le vea hasta la cadera y que se le vea por completo el pelo y los brazos.{/i}
+
+--------------------------
+
+{b}MÚSICA Y SONIDOS UTILIZADOS{/b}
+
+A Busy Restaurant And Bar At Rush Hour. Autor: WhiteNoiseSleeper. {a=https://pixabay.com/es/sound-effects/a-busy-restaurant-and-bar-at-rush-hour-195098}pixabay.com/es/sound-effects/a-busy-restaurant-and-bar-at-rush-hour-195098{/a}
+
+Bar Brawl - close. Autor: JoeDinesSound. {a=https://freesound.org/people/JoeDinesSound/sounds/691586}freesound.org/people/JoeDinesSound/sounds/691586{/a}
+
+sad_rpg-town_background.mp3. Autor: SciCodeDev. {a=https://freesound.org/people/SciCodeDev/sounds/442902}freesound.org/people/SciCodeDev/sounds/442902{/a}
+
+Happy Background Music Orchestra (Loop). Autor: Migfus20. {a=https://freesound.org/people/Migfus20/sounds/561383}freesound.org/people/Migfus20/sounds/561383{/a}
+
+230520_2437_FR_TouristsStreet.wav. Autor: kevp888. {a=https://freesound.org/people/kevp888/sounds/690168}freesound.org/people/kevp888/sounds/690168/{/a}
+
+City Dreams (canción del principio): {a=https://suno.com}suno.com{/a}. Prompt: An orchestrated background song for the city of a fantasy visual novel. It has to be simple and happy, with a small touch of comedy.
+
+--------------------------
+
+{b}LICENCIAS DE SOFTWARE{/b}
 
 El siguiente software se utilizó en esta novela visual: Ren'Py Rhythm.
-Se puede encontrar su código fuente aquí: {a=https://github.com/RuolinZheng08/renpy-rhythm}https://github.com/RuolinZheng08/renpy-rhythm{/a}
+Se puede encontrar su código fuente aquí: {a=https://github.com/RuolinZheng08/renpy-rhythm}github.com/RuolinZheng08/renpy-rhythm{/a}
 Este software incluye la siguiente licencia:
 
 MIT License
