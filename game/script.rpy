@@ -288,6 +288,8 @@ label start:
         stop music fadeout 0.5
         hide siluet
         show gambrio happy
+        with Dissolve(.5)
+        play music "alegre1.mp3"
         g "Gracias por escuchar lo que tengo que decir, mi nombre es Gambrio y soy un aristocrático con un sueño musical frustrado "
         g "Por culpa de mi posición como aristócrata no me permitieron cumplir mi sueño de tocar en un grupo de música de renombre, por eso ahora estoy aquí."
         g "Me dedico a buscar a grupos desamparados que tengan talento que mostrar"
