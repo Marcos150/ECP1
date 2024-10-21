@@ -45,17 +45,17 @@ Qinrui Chen
 
 Isekai Visual Novel Backgrounds Free. Autora: Tainara-P. {a=https://tainara-p.itch.io/isekai-visual-novel-backgrounds-free}tainara-p.itch.io/isekai-visual-novel-backgrounds-free{/a}
 
-Sprites generados con Copilot.
+Sprites generados con Copilot. {a=https://copilot.microsoft.com}copilot.microsoft.com{/a}
 
-NG: {i}Generame una imagen de un Clerigo de estilo mago joven de estilo mediebal para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime.{/i}
+NG: {i}Genérame una imagen de un Clérigo de estilo mago joven de estilo medieval para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime.{/i}
 
-Vermina: {i}Generame una imagen de un maga (femenino) joven de estilo mediebal para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime.{/i}
+Vermina: {i}Genérame una imagen de un maga (femenino) joven de estilo medieval para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime.{/i}
 
-Dimitri: {i}Generame un bardo (mago que utiliza un instrumento como arma) joven de estilo mediebal para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime.{/i}
+Dimitri: {i}Genérame un bardo (mago que utiliza un instrumento como arma) joven de estilo medieval para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime.{/i}
 
-Gambrio: {i}Generame un aristocrata adulto (no tan niño ni tan viejo) que aparente ser rico  de estilo mediebal para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime.{/i}
+Gambrio: {i}Genérame un aristócrata adulto que aparente ser rico  de estilo medieval para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime.{/i}
 
-Fermin: {i}Generame un barbaro adulto (no tan niño ni tan viejo) con barba, estilo mediebal para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime. Quiero que se le vea hasta la cadera y que se le vea por completo el pelo y los brazos.{/i}
+Fermin: {i}Genérame un bárbaro adulto con barba, estilo medieval para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime. Quiero que se le vea hasta la cadera y que se le vea por completo el pelo y los brazos.{/i}
 
 --------------------------
 
@@ -72,6 +72,8 @@ Happy Background Music Orchestra (Loop). Autor: Migfus20. {a=https://freesound.o
 230520_2437_FR_TouristsStreet.wav. Autor: kevp888. {a=https://freesound.org/people/kevp888/sounds/690168}freesound.org/people/kevp888/sounds/690168/{/a}
 
 City Dreams (canción del principio): {a=https://suno.com}suno.com{/a}. Prompt: An orchestrated background song for the city of a fantasy visual novel. It has to be simple and happy, with a small touch of comedy.
+
+Música de la composición final generada con Remusic {a=https://remusic.ai/cn/ai-music-generator}remusic.ai{/a} {i}Una melodía medieval para una actuación callejera, son dos hombres y una mujer. Uno de los hombres toca una guitarra.{/i}
 
 --------------------------
 

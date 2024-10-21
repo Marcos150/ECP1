@@ -6,67 +6,101 @@ define g = Character("Gambrio", color='#ffd900')
 define c = Character("???")
 define narrator = Character(None, what_italic=True)
 
-# Codigo para agitar pantalla
-init:
-    python:
-        import math
+# Adaptado de https://www.renpy.org/wiki/renpy/doc/cookbook/Konami_Code
 
-        class Shaker(object):
-        
-            anchors = {
-                'top' : 0.0,
-                'center' : 0.5,
-                'bottom' : 1.0,
-                'left' : 0.0,
-                'right' : 1.0,
-                }
-        
-            def __init__(self, start, child, dist):
-                if start is None:
-                    start = child.get_placement()
-                #
-                self.start = [ self.anchors.get(i, i) for i in start ]  # central position
-                self.dist = dist    # maximum distance, in pixels, from the starting point
-                self.child = child
-                
-            def __call__(self, t, sizes):
-                # Float to integer... turns floating point numbers to
-                # integers.                
-                def fti(x, r):
-                    if x is None:
-                        x = 0
-                    if isinstance(x, float):
-                        return int(x * r)
-                    else:
-                        return x
+# This lets you easily add the Konami code to your Ren'Py game. When
+# the Konami code (up up down down left right left right a b) has been
+# entered, this calls the konami_code label (in a new context, so that
+# the current game state isn't lost.
 
-                xpos, ypos, xanchor, yanchor = [ fti(a, b) for a, b in zip(self.start, sizes) ]
+init python hide:
 
-                xpos = xpos - xanchor
-                ypos = ypos - yanchor
-                
-                nx = xpos + (1.0-t) * self.dist * (renpy.random.random()*2-1)
-                ny = ypos + (1.0-t) * self.dist * (renpy.random.random()*2-1)
+    class KonamiListener(renpy.Displayable):
 
-                return (int(nx), int(ny), 0, 0)
-        
-        def _Shake(start, time, child=None, dist=100.0, **properties):
+        def __init__(self, target):
 
-            move = Shaker(start, child, dist=dist)
-        
-            return renpy.display.layout.Motion(move,
-                        time,
-                        child,
-                        add_sizes=True,
-                        **properties)
+            renpy.Displayable.__init__(self)
 
-        Shake = renpy.curry(_Shake)
+            import pygame
+            
+            # The label we jump to when the code is entered.
+            self.target = target
 
-# $ count = 0
-    # while (count < 10):
-    #     with Shake((0, 0, 0, 0), 0.25, dist=17)
-    #     pause 0.4
-    #     $ count += 1
+            # This is the index (in self.code) of the key we're
+            # expecting.
+            self.state = 0
+
+            # The code itself.
+            self.code = [
+                pygame.K_UP,
+                pygame.K_UP,
+                pygame.K_DOWN,
+                pygame.K_DOWN,
+                pygame.K_LEFT,
+                pygame.K_RIGHT,
+                pygame.K_LEFT,
+                pygame.K_RIGHT,
+                pygame.K_b,
+                pygame.K_a,
+                ]
+
+        # This function listens for events.
+        def event(self, ev, x, y, st):
+            import pygame
+
+            # We only care about keydown events.
+            if ev.type != pygame.KEYDOWN:
+                return
+
+            # If it's not the key we want, go back to the start of the statem
+            # machine.
+            if ev.key != self.code[self.state]:
+                self.state = 0
+                return
+
+            # Otherwise, go to the next state.
+            self.state += 1
+
+            # If we are at the end of the code, then call the target label in
+            # the new context. (After we reset the state machine.)
+            if self.state == len(self.code):
+                self.state = 0
+                renpy.call_in_new_context(self.target)
+
+            return
+
+        # Return a small empty render, so we get events.
+        def render(self, width, height, st, at):
+            return renpy.Render(1, 1)
+
+
+    # Create a KonamiListener to actually listen for the code.
+    store.konami_listener = KonamiListener('konami_code')
+
+    # This adds konami_listener to each interaction.
+    def konami_overlay():
+        ui.add(store.konami_listener)
+
+    config.overlay_functions.append(konami_overlay)
+
+
+# This is called in a new context when the konami code is entered.
+label konami_code:
+    menu:
+        "Principio":
+            jump start
+        "Gambrio mal":
+            jump choice11
+        "Gambrio bien":
+            jump choice22
+        "Puntuación alta":
+            jump puntuacion_alta
+        "Puntuación baja":
+            jump puntuacion_normal
+        "Puntuación 0":
+            jump puntuacion_0
+
+    return
 
 label start:
     #TODO: Narrador texto lento. Se hace con {cps=20}Fixed Speed{/cps}
@@ -118,11 +152,7 @@ label start:
     show vermina happy at center
     with Dissolve(1.5)
 
-    #TODO: Se podria directamente saltar a despues de la actuacion, asi nos ahorramos buscar musica para esta parte
-    #Es decir, que v diga algo como "muchas gracias a todos, espero que os haya gustado el concierto"
     v "Hola a todos señores y señoras, vamos a empezar con nuestra actuación. Somos los Magos Tarados y esta es nuestra nueva canción"
-    # El nombre del grupo se puede cambiar
-    # play music "Musica-pop.mp3"
 
     hide ng
     hide dimitri
@@ -135,7 +165,6 @@ label start:
     show fermin at Transform(zoom=0.9, yalign=1.0)
     with Dissolve(1)
 
-    #TODO: Ahora que lo pienso, esto de "pequeña" puede tener connotaciones muy feas
     f "Hola pequeña. Cantas bastante mal, pero seguro que ese cuerpo no se mueve tan mal en mi casa."
 
     transform slightright:
@@ -147,7 +176,7 @@ label start:
 
     hide vermina
     with moveoutright
-    show dimitri angry at right #TODO: Esto o va - infront vermina
+    show dimitri angry at right
     with moveinright
 
     d "Oye, déjala en paz. Ella es nuestra cantante y aunque ninguno de nosotros sea un profesional no tienes porque obligarla a renunciar a su sueño."
@@ -155,7 +184,7 @@ label start:
     hide dimitri
     with moveoutright
 
-    show ng at right #TODO infront vermina
+    show ng at right
     with moveinright
 
     n "Deberías medir mejor tus palabras bestia, ningún hombre está por encima de las mujeres ya que ellas aportan la vida a este mundo de muerte y pena."
@@ -175,6 +204,7 @@ label start:
             stop music fadeout 1.0
             queue music "pelea.mp3"
             "Vermina, paralizada por el miedo, deja que Fermin llegue a ella y la levante del suelo agarrándola del cuello del vestido." 
+            play sound "hechizo.mp3"
             "Provocando así que Vermina entre en pánico y sin pensar, ni encantar realize el hechizo Ola Atronadora que empuja a Fermin contra la pared."
             "Vermina no puede levantarse del miedo por lo que al cabo del tiempo Fermin vence a Dimitri y NG, y llega a Vermina dándole una paliza."
         "Vermina se cubre con Dimitri":
@@ -237,6 +267,7 @@ label start:
         "Escuchar al extraño por un minuto. Puede que diga algo interesante...":
             jump choice22
     label choice11:
+        scene alley_afternoon
         show dimitri at left
         with Dissolve(.5)
         d "No tenemos tiempo para tus tonterías. Lo siento pero tenemos que llevar a nuestra compañera al hospital."
@@ -249,19 +280,18 @@ label start:
         "Finalmente consiguen curar a Vermina pero por culpa del alto coste de la cura nuestro grupo no pudo seguir con su sueño."
         "Vermina tuvo que encontrar trabajo en un bar como camarera, donde habitualmente la acosaban, pero era protegida por el jefe del local."
         "Dimitri se vuelve un alcohólico ya que un bardo sin un sueño no es nadie."
-        #TODO: 'O Enji' hace falta ponerlo?
-        "Por último NG o Enji, nuestro clérigo, volvió a su iglesia y a su vida mundana como cura de barrio."
+        "Por último NG, nuestro clérigo, volvió a su iglesia y a su vida mundana como cura de barrio."
         #Finaliza el juego
         return
     label choice22:
+        scene alley_afternoon
         stop music fadeout 0.5
         hide siluet
         show gambrio happy
-        with Dissolve(0.5)
-        play music "alegre1.mp3"
-        #TODO: La presentacion de Gambrio se podria alargar un poco mas. 
-        #Podria contar alguna historia personal tipo "de pequeño queria ser musico, pero a mis padres no les gustaba. Por eso ahora quiero ayudar a todos los musicos que veo"
-        g "Me llamo Gambrio y tengo bastante dinero por lo que estoy dispuesto a financiar un concierto de vuestro grupo en el centro de la Ciudad Versaya, en la Plaza Mayor."
+        g "Gracias por escuchar lo que tengo que decir, mi nombre es Gambrio y soy un aristocrático con un sueño musical frustrado "
+        g "Por culpa de mi posición como aristócrata no me permitieron cumplir mi sueño de tocar en un grupo de música de renombre, por eso ahora estoy aquí."
+        g "Me dedico a buscar a grupos desamparados que tengan talento que mostrar"
+        g "Estoy dispuesto a financiar un concierto de vuestro grupo en el centro de la Ciudad Versaya, en la Plaza Mayor, por si os interesa."
 
         "Vermina está atónita y no se lo puede creer, mientras que NG y Dmitri se levantan porque creen que es mentira."
 
@@ -274,12 +304,14 @@ label start:
 
         g "Trato hecho."
         g "Esta noche podéis venir a mi casa. Y por parte de la señorita Vermina, podemos llevarla ahora al hospital."
-
+        hide gambrio
+        with Dissolve(.3)
+        hide dimitri
+        with Dissolve(.3)
         "Las caras de todos se iluminaron y vieron esperanza en toda esta desesperación."
 
         stop music fadeout 1.5
         queue music "calle.mp3"
-        scene square_fountain_day
         with Dissolve(.5)
         show vermina shock at left
         with Dissolve(.5)
@@ -288,13 +320,23 @@ label start:
         show dimitri shock at right
         with Dissolve(.5)
 
+        hide vermina
+        with Dissolve(.4)
+        hide ng
+        with Dissolve(.4)
+        hide dimitri
+        with Dissolve(.4)
+        
+        scene square_fountain_night_light
+        with Dissolve(1)
         "Unos días después todos estaban recuperados y listos para cantar. Su equipamiento había sido reparado y Gambrio les había proporcionado todo lo necesario para llevar a cabo su concierto por lo que todos estaban muy emocionados."
-
         show vermina happy
-
+        with Dissolve(.5)
         v "Aun no me creo que vayamos a cantar en un escenario de verdad. Nuestro sueño por fin se va a hacer realidad chicos."
-
-        #show ng happy at left
+        hide vermina
+        with Dissolve(.5)
+        show ng happy at left
+        with Dissolve(.9)
         
         n "Tienes razón señorita Vermina, Dios puso nuestra convicción a prueba y gracias a que fuimos persistentes hemos sido recompensados con nuestro sueño, no podía haber mejor recompensa."
 
@@ -302,8 +344,8 @@ label start:
 
         d "Espero que después de esto las mujeres se me vengan encima."
 
-        "La música empieza a sonar suavemente mientras todos salen al escenario, Dimitri y NG empiezan a tocar y después de unos segundos Vermina les sigue con el coro mientras lanza al aire una Bola de Fuego a modo de fuegos artificiales para marcar así el comienzo de su carrera como banda oficial de música."
-
+        "La música empieza a sonar suavemente mientras todos salen al escenario, Dimitri y NG empiezan a tocar y después de unos segundos Vermina les sigue con el coro."
+        "Mientras Vermina canta lanza al aire una Bola de Fuego a modo de fuegos artificiales para marcar así el comienzo de su carrera como banda oficial de música."
         "La multitud se acumula y nuestros héroes se emocionan, todo su esfuerzo ha dado sus frutos y han conseguido su sueño: tocar su canción favorita para miles de personas."
 
         stop music fadeout 1.5
@@ -315,7 +357,7 @@ label start:
         $ quick_menu = False
         # avoid rolling back and losing chess game state
         $ renpy.block_rollback()
-        $ song = Song('Rickroll', 'audio/rickroll.mp3', 'audio/rickroll.beatmap.txt', beatmap_stride=3)
+        $ song = Song('Final', 'audio/final.mp3', 'audio/final.beatmap.txt', beatmap_stride=3)
         $ rhythm_game_displayable = RhythmGameDisplayable(song)
         call screen rhythm_game(rhythm_game_displayable)
 
@@ -328,21 +370,46 @@ label start:
         $ quick_menu = True
         window show
 
-        if (rhythm_game_displayable.score >= (song.max_score/3)*2):
+        if (rhythm_game_displayable.score == 0):
+            jump puntuacion_0
+        elif (rhythm_game_displayable.score >= (song.max_score/3)*2):
             jump puntuacion_alta
         elif (rhythm_game_displayable.score < (song.max_score/3)*2 and rhythm_game_displayable.score >= song.max_score/3):
             jump puntuacion_normal
         else:
-            jump puntuacion_baja
+            jump choice11
 
 label puntuacion_alta:
-    "Completar historia puntuación alta"
+    scene ciudad_day
+    with Dissolve(2)
+    "Después de tal grandiosa actuación el grupo de los Magos Tarados se ve impulsado al estrellato."
+    "Su fama se esparce de manera indefinida por todo el mundo y empiezan a tener actuaciones semanales con las plazas a reventar de espectadores."
+    "Nuestros músicos han cumplido su sueño y por todo lo alto. Ahora solo les queda disfrutar su sueño y olvidar los malos tiempos..."
     return
 
 label puntuacion_normal:
-    "Completar historia puntuación normal"
+    scene ciudad_day
+    with Dissolve(2)
+    "Los Magos Tarados completaron su actuación sin mayor complicación, gracias a Gambrio."
+    "Su sueño estaba cumplido, se habían labrado un nombre en el mundo de la música como un buen grupo."
+    "Esperemos que todo siga igual de bien y no vuelva la mala suerte de nuestros nobles músicos."
     return
 
-label puntuacion_baja:
-    "Completar historia puntuación baja"
+label puntuacion_0:
+    show vermina happy
+    with Dissolve(1)
+    v "¿Te crees gracioso? Por cosas como esta no tengo novio."
+    hide vermina
+    with Dissolve(1)
+    show dimitri happy
+    with Dissolve(1)
+    d "Pensaba que el trofeo al más gracioso lo tenia yo, pero veo que hay gente en otro nivel."
+    hide dimitri
+    with Dissolve(1)
+    show ng happy
+    with Dissolve(1)
+    n "Ni Dios puede perdonar tu estupidez..."
+    hide ng
+    with Dissolve(1)
+    "Ahora si te quieres ver los otros finales te juegas el juego otra vez crack."
     return

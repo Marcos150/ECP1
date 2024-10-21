@@ -111,7 +111,7 @@ screen rhythm_game(rhythm_game_displayable):
     key 'K_DOWN' action NullAction()
     key 'K_RIGHT' action NullAction()
 
-    add Solid('#000')
+    add "square_fountain_night_light.png"
     add rhythm_game_displayable
 
     vbox:
