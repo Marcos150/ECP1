@@ -107,16 +107,16 @@ label start:
 
     scene ciudad_day
     with Dissolve(1.0)
+    play music "alegre2.mp3"
 
     "En esta hermosa ciudad es temporada de cosecha por lo que nuestros aventureros aprovechan para reponer sus provisiones."
-    play music "alegre2.mp3"
     show vermina
-    v "Necesito reponer mis pociones, en la última batalla, con lo poco que protege mi túnica me quede sin pociones demasiado rápido. Necesito comprar más."
+    v "Necesito reponer mis pociones. En la última batalla, con lo poco que protege mi túnica, me quede sin pociones demasiado rápido. Necesito comprar más."
     hide vermina
     with moveoutleft
 
     show ng
-    n "Mi presencia es necesaria en la gran casa de Dios, luego más tarde acudiré a vuestra llamada para seguir con nuestra gira."
+    n "Mi presencia es necesaria en la gran casa de Dios. Luego más tarde acudiré a vuestra llamada para seguir con nuestra gira."
     hide ng
     with moveoutright
 
@@ -149,11 +149,14 @@ label start:
     show vermina at center
     with Dissolve(1.5)
 
-    v "Hola a todos señores y señoras, vamos a empezar con nuestra actuación. Somos los Magos Tarados y esta es nuestra nueva canción"
+    v "¡Muchas gracias haber venido a presenciar nuestra actuación!"
+    v "Si os habéis quedado con ganas de más, ¡Los Magos Tarados volveremos próximamente con una nueva canción!"
+    v "Esperamos volver a veros en la próxima. ¡Muchas gracias!"
 
     hide ng
     hide dimitri
     hide vermina
+    with dissolve
 
     "Después del espectáculo un bárbaro se acerca a nuestro grupo de magos y empieza a molestar a Vermina."
     show vermina at right
@@ -162,7 +165,7 @@ label start:
     show fermin at Transform(zoom=0.9, yalign=1.0)
     with Dissolve(1)
 
-    f "Hola pequeña. Cantas bastante mal, pero seguro que ese cuerpo no se mueve tan mal en mi casa."
+    f "Hola pequeña. Tu voz es horrible, pero seguro que ese cuerpo no se mueve tan mal en mi casa."
 
     transform slightright:
         xalign 0.75
@@ -190,9 +193,10 @@ label start:
     
     hide ng
     hide fermin
-    "Fermin el bárbaro se acerca peligrosamente a Vermina."
 
     menu:
+        "Fermin el bárbaro se acerca peligrosamente a Vermina."
+
         "Vermina llora en una esquina":
             stop music fadeout 1.0
             queue music "pelea.mp3"
@@ -202,8 +206,8 @@ label start:
             queue music "pelea.mp3"
             "Vermina, paralizada por el miedo, deja que Fermin llegue a ella y la levante del suelo agarrándola del cuello del vestido." 
             play sound "hechizo.mp3"
-            "Provocando así que Vermina entre en pánico y sin pensar, ni encantar realize el hechizo Ola Atronadora que empuja a Fermin contra la pared."
-            "Vermina no puede levantarse del miedo por lo que al cabo del tiempo Fermin vence a Dimitri y NG, y llega a Vermina dándole una paliza."
+            "Vermina entra en pánico y sin pensarlo realiza el hechizo Ola Atronadora, que empuja a Fermin contra la pared."
+            "Vermina no puede levantarse del miedo por lo que al cabo del tiempo Fermin vence a Dimitri y NG, y llega hasta Vermina, dándole una paliza."
         "Vermina se cubre con Dimitri":
             stop music fadeout 1.0
             queue music "pelea.mp3"
@@ -223,26 +227,22 @@ label start:
     show dimitri at right
     with Dissolve(.5)
 
-    "Pasan los días mientras intentan recuperar algo de dinero cantando suavemente en las calles de la ciudad y pidiendo algo de dinero para poder comer y así sobrevivir un día más."
-    
-    show ng at left
-    with Dissolve(.4)
+    "Pasan los días mientras los Magos Tarados intentan conseguir algo de dinero cantando suavemente en las calles de la ciudad y pidiendo propinas para poder comer y sobrevivir."
 
-    n "Dios nos ha castigado por tu culpa Dimitri. Todos tus actos impuros nos han dejado aquí varados sin dinero para comer. Oh mi querido Dios, por qué le haces esto a tu más devoto seguidor."
+    n "Dios nos ha castigado por tu culpa Dimitri. Todos tus actos impuros nos han dejado aquí, varados sin dinero ni para comer."
+    n "Oh, mi querido Dios, por qué le haces esto a tu más devoto seguidor..."
 
-    show dimitri at right
-    with Dissolve(.4)
+    d "Pero que dices, si Dios no existe. Si existiera no nos dejaría pasar por esto. Es más, nos traería a alguien para que nos ayudase."
 
-    d "Pero que dices, Dios no existe. Si existiera no nos dejaría pasar por esto. Es más, nos traería a alguien para que nos ayudase."
+    n "¡Retira esa afirmación Dimitri! Dios existe y es incluso más real que tú y que yo."
 
-    n "¡Retira lo dicho Dimitri! Dios existe y es incluso más real que tú y que yo, así que ya puedes retirar lo que acabas de decir."
-
-    "Dimitri y NG se miran con rabia, como si estuvieran a punto de pelearse. Pero de pronto escuchan toser a Vermina, y corren despavoridos a ayudarla ya que ella fue la que más golpes se llevó."
+    "Dimitri y NG se miran con rabia, como si estuvieran a punto de pelearse. Pero de pronto escuchan toser a Vermina, y corren asustados a ayudarla ya que ella fue la que más golpes se llevó."
 
     show vermina
     with Dissolve(1)
 
-    v "Chicos no os peleéis. No fue culpa de ninguno de nosotros, simplemente tuvimos mala suerte. Ahora dejadme descansar."
+    v "Chicos no os peleéis. No fue culpa de ninguno de nosotros, simplemente tuvimos mala suerte."
+    v "Seguro que si seguimos esforzándonos lograremos salir de esta."
     
     hide vermina
     hide ng
@@ -255,7 +255,7 @@ label start:
     with moveinright
 
     c "Si sois Los Magos Tarados. La canción que cantasteis en el bar Toronja me emocionó muchísimo, pero el conflicto que hubo justo después me asustó, por lo que huí de allí."
-    c "Pero al escuchar lo que había sucedido decidí actuar y ayudaros en algo."
+    c "Sin embargo, al escuchar lo que os había sucedido decidí actuar y me propuse tratar de ayudaros como sea."
     c "¿Me escucharíais?"
     
     menu: 
@@ -287,10 +287,10 @@ label start:
         show gambrio
         with Dissolve(.5)
         play music "alegre1.mp3"
-        g "Gracias por escuchar lo que tengo que decir, mi nombre es Gambrio y soy un aristocrático con un sueño musical frustrado "
-        g "Por culpa de mi posición como aristócrata no me permitieron cumplir mi sueño de tocar en un grupo de música de renombre, por eso ahora estoy aquí."
-        g "Me dedico a buscar a grupos desamparados que tengan talento que mostrar"
-        g "Estoy dispuesto a financiar un concierto de vuestro grupo en el centro de la Ciudad Versaya, en la Plaza Mayor, por si os interesa."
+        g "Gracias por darme esta oportunidad. Mi nombre es Gambrio y soy un aristocrático con un sueño musical frustrado."
+        g "Por culpa de mi posición como aristócrata no se me permitió cumplir mi sueño de tocar en un grupo musical de renombre, razón por la cual me encuentro aquí ahora."
+        g "Me dedico a buscar a grupos desamparados que tengan talento y que deseen mostrárselo al mundo."
+        g "Estoy dispuesto a financiar un concierto de vuestro grupo en el centro de la Ciudad Versaya, en la Plaza Mayor."
 
         "Vermina está atónita y no se lo puede creer, mientras que NG y Dmitri se levantan porque creen que es mentira."
 
@@ -299,18 +299,17 @@ label start:
         with moveinright
         
         d "¿Señor Gambrio verdad? Me parece que crees que somos una broma."
-        d "No somos famosos, no tenemos ni para comer, ¿y tú quieres que hagamos un concierto sin previo aviso? Ja, primero empieza por darnos alojamiento y tratamiento para Vermina."
+        d "No somos famosos, no tenemos ni para comer, ¿y tú quieres que hagamos un concierto sin previo aviso?" 
+        d "Primero empieza por darnos alojamiento y tratamiento para Vermina, y luego quizás nos plantearemos tu propuesta."
 
         g "Trato hecho."
-        g "Esta noche podéis venir a mi casa. Y por parte de la señorita Vermina, podemos llevarla ahora al hospital."
+        g "Esta noche podéis alojaros a mi casa." 
+        g "Y por parte de la señorita Vermina, la llevaremos al hospital inmediatamente."
         hide gambrio
-        with Dissolve(.3)
         hide dimitri
         with Dissolve(.3)
         "Las caras de todos se iluminaron y vieron esperanza en toda esta desesperación."
 
-        stop music fadeout 1.5
-        queue music "calle.mp3"
         with Dissolve(.5)
         show vermina at left
         with Dissolve(.5)
@@ -328,7 +327,10 @@ label start:
         
         scene square_fountain_night_light
         with Dissolve(1)
-        "Unos días después todos estaban recuperados y listos para cantar. Su equipamiento había sido reparado y Gambrio les había proporcionado todo lo necesario para llevar a cabo su concierto por lo que todos estaban muy emocionados."
+        stop music fadeout 1.5
+        queue music "calle.mp3"
+        "Unos días después, todos estaban recuperados y listos para cantar."
+        "Su equipamiento había sido reparado y Gambrio les había proporcionado todo lo necesario para llevar a cabo su concierto, por lo que todos estaban muy emocionados."
         show vermina
         with Dissolve(.5)
         v "Aun no me creo que vayamos a cantar en un escenario de verdad. Nuestro sueño por fin se va a hacer realidad chicos."
@@ -337,15 +339,14 @@ label start:
         show ng at left
         with Dissolve(.9)
         
-        n "Tienes razón señorita Vermina, Dios puso nuestra convicción a prueba y gracias a que fuimos persistentes hemos sido recompensados con nuestro sueño, no podía haber mejor recompensa."
+        n "Tiene razón señorita Vermina. Dios puso nuestra convicción a prueba y gracias a que fuimos persistentes hemos sido recompensados con nuestro sueño."
 
         show dimitri at right
 
         d "Espero que después de esto las mujeres se me vengan encima."
 
-        "La música empieza a sonar suavemente mientras todos salen al escenario, Dimitri y NG empiezan a tocar y después de unos segundos Vermina les sigue con el coro."
-        "Mientras Vermina canta lanza al aire una Bola de Fuego a modo de fuegos artificiales para marcar así el comienzo de su carrera como banda oficial de música."
-        "La multitud se acumula y nuestros héroes se emocionan, todo su esfuerzo ha dado sus frutos y han conseguido su sueño: tocar su canción favorita para miles de personas."
+        "La música empieza a sonar suavemente mientras todos salen al escenario. Dimitri y NG empiezan a tocar y después de unos segundos Vermina les sigue con el coro."
+        "La multitud se acumula y nuestros héroes se emocionan. Todo el esfuerzo ha dado sus frutos y han conseguido su sueño: tocar su canción favorita para miles de personas."
 
         stop music fadeout 1.5
         scene black
