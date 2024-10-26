@@ -57,19 +57,21 @@ Gambrio: {i}Genérame un aristócrata adulto que aparente ser rico  de estilo me
 
 Fermin: {i}Genérame un bárbaro adulto con barba, estilo medieval para poderlo emplear en renpy las necesito que no sean tan realistas, las quiero más estilo anime. Quiero que se le vea hasta la cadera y que se le vea por completo el pelo y los brazos.{/i}
 
+Imagen usada en huevo de pascua. Autora: Isabelle Barth. Propiedad de Printerval. {a=https://images.app.goo.gl/1A7tVNTq5AxQ7UN97}images.app.goo.gl/1A7tVNTq5AxQ7UN97{/a}. Licencia de la imagen: {a=https://creativecommons.org/licenses/by-nc/4.0}creativecommons.org/licenses/by-nc/4.0{/a}
+
 --------------------------
 
 {b}MÚSICA Y SONIDOS UTILIZADOS{/b}
 
 A Busy Restaurant And Bar At Rush Hour. Autor: WhiteNoiseSleeper. {a=https://pixabay.com/es/sound-effects/a-busy-restaurant-and-bar-at-rush-hour-195098}pixabay.com/es/sound-effects/a-busy-restaurant-and-bar-at-rush-hour-195098{/a}
 
-Bar Brawl - close. Autor: JoeDinesSound. {a=https://freesound.org/people/JoeDinesSound/sounds/691586}freesound.org/people/JoeDinesSound/sounds/691586{/a}
+Bar Brawl - close por JoeDinesSound -- {a=https://freesound.org/s/691586/}https://freesound.org/s/691586/{/a} -- Licencia: Creative Commons 0: {a=https://creativecommons.org/publicdomain/zero/1.0}https://creativecommons.org/publicdomain/zero/1.0{/a}
 
-sad_rpg-town_background.mp3. Autor: SciCodeDev. {a=https://freesound.org/people/SciCodeDev/sounds/442902}freesound.org/people/SciCodeDev/sounds/442902{/a}
+sad_rpg-town_background.mp3 por SciCodeDev -- {a=https://freesound.org/s/442902/}https://freesound.org/s/442902/{/a} -- Licencia: Creative Commons 0: {a=https://creativecommons.org/publicdomain/zero/1.0}https://creativecommons.org/publicdomain/zero/1.0{/a}
 
-Happy Background Music Orchestra (Loop). Autor: Migfus20. {a=https://freesound.org/people/Migfus20/sounds/561383}freesound.org/people/Migfus20/sounds/561383{/a}
+Happy Background Music Orchestra (Loop) por Migfus20 -- {a=https://freesound.org/s/561383/}https://freesound.org/s/561383/{/a} -- Licencia: Attribution 4.0: {a=https://creativecommons.org/licenses/by/4.0}https://creativecommons.org/licenses/by/4.0{/a}
 
-230520_2437_FR_TouristsStreet.wav. Autor: kevp888. {a=https://freesound.org/people/kevp888/sounds/690168}freesound.org/people/kevp888/sounds/690168/{/a}
+230520_2437_FR_TouristsStreet.wav por kevp888 -- {a=https://freesound.org/s/690168/}https://freesound.org/s/690168/{/a} -- Licencia: Attribution 4.0: {a=https://creativecommons.org/licenses/by/4.0}https://creativecommons.org/licenses/by/4.0{/a}
 
 City Dreams (canción del principio): {a=https://suno.com}suno.com{/a}. Prompt: An orchestrated background song for the city of a fantasy visual novel. It has to be simple and happy, with a small touch of comedy.
 

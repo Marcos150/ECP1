@@ -103,29 +103,26 @@ label konami_code:
     return
 
 label start:
-    #TODO: Narrador texto lento. Se hace con {cps=20}Fixed Speed{/cps}
     "Un día soleado de verano un grupo de tres aventureros se adentran en la ciudad de Versaya."
 
     scene ciudad_day
     with Dissolve(1.0)
 
     "En esta hermosa ciudad es temporada de cosecha por lo que nuestros aventureros aprovechan para reponer sus provisiones."
-    #TODO: Esta escena se podria alargar un poquitin, me ha costado sacar esta cancion y quiero que se aproveche mas xd
     play music "alegre2.mp3"
-    show vermina sad
+    show vermina
     v "Necesito reponer mis pociones, en la última batalla, con lo poco que protege mi túnica me quede sin pociones demasiado rápido. Necesito comprar más."
-    hide vermina sad
+    hide vermina
     with moveoutleft
 
-    show ng happy
+    show ng
     n "Mi presencia es necesaria en la gran casa de Dios, luego más tarde acudiré a vuestra llamada para seguir con nuestra gira."
-    hide ng happy
+    hide ng
     with moveoutright
 
-    show dimitri happy at Transform(xzoom=-1)
-    #TODO: Pibitas -> Mozuelas ?
+    show dimitri at Transform(xzoom=-1)
     d "Pues yo me voy con las pibitas, a ver si mi nueva canción les mola."
-    hide dimitri happy
+    hide dimitri
     with moveoutbottom
     #stop music fadeout 1
     "El grupo se separa y completa sus actividades sin ningún inconveniente, volviéndose a encontrar en el bar Toronja. Preparan el escenario y empiezan con su actuación."
@@ -145,11 +142,11 @@ label start:
         yalign 1.0
     
 
-    show ng happy at left
+    show ng at left
     with Dissolve(.5)
-    show dimitri happy at right
+    show dimitri at right
     with Dissolve(1.0)
-    show vermina happy at center
+    show vermina at center
     with Dissolve(1.5)
 
     v "Hola a todos señores y señoras, vamos a empezar con nuestra actuación. Somos los Magos Tarados y esta es nuestra nueva canción"
@@ -176,7 +173,7 @@ label start:
 
     hide vermina
     with moveoutright
-    show dimitri angry at right
+    show dimitri at right
     with moveinright
 
     d "Oye, déjala en paz. Ella es nuestra cantante y aunque ninguno de nosotros sea un profesional no tienes porque obligarla a renunciar a su sueño."
@@ -228,12 +225,12 @@ label start:
 
     "Pasan los días mientras intentan recuperar algo de dinero cantando suavemente en las calles de la ciudad y pidiendo algo de dinero para poder comer y así sobrevivir un día más."
     
-    show ng angry at left
+    show ng at left
     with Dissolve(.4)
 
     n "Dios nos ha castigado por tu culpa Dimitri. Todos tus actos impuros nos han dejado aquí varados sin dinero para comer. Oh mi querido Dios, por qué le haces esto a tu más devoto seguidor."
 
-    show dimitri angry at right
+    show dimitri at right
     with Dissolve(.4)
 
     d "Pero que dices, Dios no existe. Si existiera no nos dejaría pasar por esto. Es más, nos traería a alguien para que nos ayudase."
@@ -242,7 +239,7 @@ label start:
 
     "Dimitri y NG se miran con rabia, como si estuvieran a punto de pelearse. Pero de pronto escuchan toser a Vermina, y corren despavoridos a ayudarla ya que ella fue la que más golpes se llevó."
 
-    show vermina sad
+    show vermina
     with Dissolve(1)
 
     v "Chicos no os peleéis. No fue culpa de ninguno de nosotros, simplemente tuvimos mala suerte. Ahora dejadme descansar."
@@ -268,7 +265,7 @@ label start:
             jump choice22
     label choice11:
         scene alley_afternoon
-        show dimitri at left
+        show dimitri at right
         with Dissolve(.5)
         d "No tenemos tiempo para tus tonterías. Lo siento pero tenemos que llevar a nuestra compañera al hospital."
         hide dimitri
@@ -287,7 +284,7 @@ label start:
         scene alley_afternoon
         stop music fadeout 0.5
         hide siluet
-        show gambrio happy
+        show gambrio
         with Dissolve(.5)
         play music "alegre1.mp3"
         g "Gracias por escuchar lo que tengo que decir, mi nombre es Gambrio y soy un aristocrático con un sueño musical frustrado "
@@ -297,7 +294,7 @@ label start:
 
         "Vermina está atónita y no se lo puede creer, mientras que NG y Dmitri se levantan porque creen que es mentira."
 
-        show gambrio happy at left
+        show gambrio at left
         show dimitri at right
         with moveinright
         
@@ -315,11 +312,11 @@ label start:
         stop music fadeout 1.5
         queue music "calle.mp3"
         with Dissolve(.5)
-        show vermina shock at left
+        show vermina at left
         with Dissolve(.5)
-        show ng shock
+        show ng
         with Dissolve(.5)
-        show dimitri shock at right
+        show dimitri at right
         with Dissolve(.5)
 
         hide vermina
@@ -332,17 +329,17 @@ label start:
         scene square_fountain_night_light
         with Dissolve(1)
         "Unos días después todos estaban recuperados y listos para cantar. Su equipamiento había sido reparado y Gambrio les había proporcionado todo lo necesario para llevar a cabo su concierto por lo que todos estaban muy emocionados."
-        show vermina happy
+        show vermina
         with Dissolve(.5)
         v "Aun no me creo que vayamos a cantar en un escenario de verdad. Nuestro sueño por fin se va a hacer realidad chicos."
         hide vermina
         with Dissolve(.5)
-        show ng happy at left
+        show ng at left
         with Dissolve(.9)
         
         n "Tienes razón señorita Vermina, Dios puso nuestra convicción a prueba y gracias a que fuimos persistentes hemos sido recompensados con nuestro sueño, no podía haber mejor recompensa."
 
-        show dimitri happy at right
+        show dimitri at right
 
         d "Espero que después de esto las mujeres se me vengan encima."
 
@@ -354,12 +351,22 @@ label start:
         scene black
         with Dissolve(1.0)
 
+        menu:
+            "Selecciona la dificultad del minijuego"
+
+            "Fácil":
+                $ dificultad = 3
+            "Normal":
+                $ dificultad = 2
+            "Difícil":
+                $ dificultad = 1
+
         window hide 
         with dissolve
         $ quick_menu = False
         # avoid rolling back and losing chess game state
         $ renpy.block_rollback()
-        $ song = Song('Final', 'audio/final.mp3', 'audio/final.beatmap.txt', beatmap_stride=3)
+        $ song = Song('Final', 'audio/final.mp3', 'audio/final.beatmap.txt', beatmap_stride=dificultad)
         $ rhythm_game_displayable = RhythmGameDisplayable(song)
         call screen rhythm_game(rhythm_game_displayable)
 
@@ -398,20 +405,23 @@ label puntuacion_normal:
     return
 
 label puntuacion_0:
-    show vermina happy
+    stop music
+    scene black
+    show vermina
     with Dissolve(1)
-    v "¿Te crees gracioso? Por cosas como esta no tengo novio."
+    v "¿Te crees gracioso? Por cosas como esta no tengo pareja."
     hide vermina
     with Dissolve(1)
-    show dimitri happy
+    show dimitri at right
     with Dissolve(1)
     d "Pensaba que el trofeo al más gracioso lo tenia yo, pero veo que hay gente en otro nivel."
     hide dimitri
     with Dissolve(1)
-    show ng happy
+    show ng
     with Dissolve(1)
     n "Ni Dios puede perdonar tu estupidez..."
     hide ng
     with Dissolve(1)
+    show meme at Transform(zoom=2.0, xalign=0.5, yalign=0.5)
     "Ahora si te quieres ver los otros finales te juegas el juego otra vez crack."
     return
