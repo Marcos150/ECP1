@@ -119,14 +119,14 @@ screen rhythm_game(rhythm_game_displayable):
         ypos 50
         spacing 20
 
-        textbutton 'Quit' action [
-        Confirm('Would you like to quit the rhythm game?',
-            yes=[
-            Stop(CHANNEL_RHYTHM_GAME), # stop the music on this channel
-            Return(rhythm_game_displayable.score)
-            ])]:
-            # force the button text to be white when hovered
-            text_hover_color '#fff'
+        # textbutton 'Quit' action [
+        # Confirm('Would you like to quit the rhythm game?',
+        #     yes=[
+        #     Stop(CHANNEL_RHYTHM_GAME), # stop the music on this channel
+        #     Return(rhythm_game_displayable.score)
+        #     ])]:
+        #     # force the button text to be white when hovered
+        #     text_hover_color '#fff'
 
         # can also use has_music_started so this won't show during the silence
         showif rhythm_game_displayable.has_game_started:
